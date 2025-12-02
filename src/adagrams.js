@@ -1,15 +1,36 @@
-const LETTER_POOL = {
-  'A': 9, 'B': 2, 'C': 2, 'D': 4, 'E': 12, 'F': 2,
-  'G': 3, 'H': 2, 'I': 9, 'J': 1, 'K': 1, 'L': 4,
-  'M': 2, 'N': 6, 'O': 8, 'P': 2, 'Q': 1, 'R': 6,
-  'S': 4, 'T': 6, 'U': 4, 'V': 2, 'W': 2, 'X': 1,
-  'Y': 2, 'Z': 1,
+const LETTERS = {
+  A: {qty:9, score:1},
+  B: {qty:2, score:3},
+  C: {qty:2, score:3},
+  D: {qty:4, score:2},
+  E: {qty:12, score:1},
+  F: {qty:2, score:4},
+  G: {qty:3, score:2},
+  H: {qty:2, score:4},
+  I: {qty:9, score:1},
+  J: {qty:1, score:8},
+  K: {qty:1, score:5},
+  L: {qty:4, score:1},
+  M: {qty:2, score:3},
+  N: {qty:6, score:1},
+  O: {qty:8, score:1},
+  P: {qty:2, score:3},
+  Q: {qty:1, score:10},
+  R: {qty:6, score:1},
+  S: {qty:4, score:1},
+  T: {qty:6, score:1},
+  U: {qty:4, score:1},
+  V: {qty:2, score:4},
+  W: {qty:2, score:4},
+  X: {qty:1, score:8},
+  Y: {qty:2, score:4},
+  Z: {qty:1, score:10},
 };
 
 const drawableAvailableLetters = (letterPool) => {
   let availableLetters = [];
-  for (const [letter, qty] of Object.entries(letterPool)) {
-    for (let i = 0; i < qty; i++) {
+  for (const [letter, quantity] of Object.entries(letterPool)) {
+    for (let i = 0; i < quantity.qty; i++) {
       availableLetters.push(letter);
     };
   };
@@ -17,7 +38,7 @@ const drawableAvailableLetters = (letterPool) => {
 };
 
 export const drawLetters = () => {
-  const letterPool = drawableAvailableLetters(LETTER_POOL);
+  const letterPool = drawableAvailableLetters(LETTERS);
   let outputLetters = [];
   
   const MAX_HAND_LENGTH = 10;
@@ -54,7 +75,9 @@ export const usesAvailableLetters = (input, lettersInHand) => {
 };
 
 export const scoreWord = (word) => {
-  // Implement this method for wave 3
+  const score = 0;
+  
+
 };
 
 export const highestScoreFrom = (words) => {
