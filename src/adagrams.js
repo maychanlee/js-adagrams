@@ -1,4 +1,3 @@
-// Variables for Project
 const LETTER_POOL = {
   'A': 9, 'B': 2, 'C': 2, 'D': 4, 'E': 12, 'F': 2,
   'G': 3, 'H': 2, 'I': 9, 'J': 1, 'K': 1, 'L': 4,
@@ -7,7 +6,6 @@ const LETTER_POOL = {
   'Y': 2, 'Z': 1,
 };
 
-//helper function to get convert our letter pool to a list
 const drawableAvailableLetters = (letterPool) => {
   let availableLetters = [];
   for (const [letter, qty] of Object.entries(letterPool)) {
@@ -19,10 +17,9 @@ const drawableAvailableLetters = (letterPool) => {
 };
 
 export const drawLetters = () => {
-  // Implement this method for wave 1
   const letterPool = drawableAvailableLetters(LETTER_POOL);
   let outputLetters = [];
-
+  
   const MAX_HAND_LENGTH = 10;
 
   while (outputLetters.length < MAX_HAND_LENGTH) {
@@ -35,7 +32,25 @@ export const drawLetters = () => {
 };
 
 export const usesAvailableLetters = (input, lettersInHand) => {
-  // Implement this method for wave 2
+  const handMap = new Map();
+  const wordMap = new Map();
+
+  for (const letter of input.toUpperCase()) {
+    const letterCount = wordMap.get(letter) || 0;
+    wordMap.set(letter, letterCount+1);
+  }
+
+  for (const hand of lettersInHand) {
+    const handCount = handMap.get(hand) || 0;
+    handMap.set(hand, handCount+1);
+  }
+
+  for (const [letter, count] of wordMap) {
+    if ((handMap.get(letter) || 0) < count) {
+      return false;
+    }
+  }
+  return true;
 };
 
 export const scoreWord = (word) => {
