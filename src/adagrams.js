@@ -28,7 +28,7 @@ const LETTERS = {
 };
 
 const drawableAvailableLetters = (letterPool) => {
-  let availableLetters = [];
+  const availableLetters = [];
   for (const [letter, quantity] of Object.entries(letterPool)) {
     for (let i = 0; i < quantity.qty; i++) {
       availableLetters.push(letter);
@@ -39,7 +39,7 @@ const drawableAvailableLetters = (letterPool) => {
 
 export const drawLetters = () => {
   const letterPool = drawableAvailableLetters(LETTERS);
-  let outputLetters = [];
+  const outputLetters = [];
   
   const MAX_HAND_LENGTH = 10;
 
@@ -75,9 +75,19 @@ export const usesAvailableLetters = (input, lettersInHand) => {
 };
 
 export const scoreWord = (word) => {
-  const score = 0;
-  
+  let score = 0;
+  const BONUS_SCORE = 8;
 
+  for (const letter of word.toUpperCase()) {
+    const points = LETTERS[letter].score;
+    score += points;
+  }
+
+  if (word.length >= 7) {
+    score += BONUS_SCORE;
+  }
+
+  return score;
 };
 
 export const highestScoreFrom = (words) => {
